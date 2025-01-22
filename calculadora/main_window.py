@@ -1,6 +1,4 @@
 from PySide6.QtWidgets import ( QMainWindow, QVBoxLayout, QWidget,)
-from PySide6.QtGui import QIcon
-from variables import WINDOW_ICON_PATH
 
 class MainWindow(QMainWindow):
     def __init__(self,parent: QWidget | None = None, *args, **kwargs) -> None:
