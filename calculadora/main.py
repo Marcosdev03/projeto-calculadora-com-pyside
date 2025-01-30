@@ -1,35 +1,38 @@
 import sys
-from info import Info
-from PySide6.QtGui import QIcon
-from main_window import MainWindow
+
+from buttons import ButtonsGrid
 from display import Display
+from info import Info
+from main_window import MainWindow
+from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication
+from styles import setupTheme
 from variables import WINDOW_ICON_PATH
 
 if __name__ == '__main__':
-    #Cria a aplicação
+    # Cria a aplicação
     app = QApplication(sys.argv)
+    setupTheme(app)
     window = MainWindow()
 
-    #Define o ícone.
+    # Define o ícone
     icon = QIcon(str(WINDOW_ICON_PATH))
     window.setWindowIcon(icon)
     app.setWindowIcon(icon)
 
-    #Info
-    info = Info('2.0 ^ 10.0 = 1024')
-    window.addToVlayout(info)
+    # Info
+    info = Info('Sua conta')
+    window.addWidgetToVLayout(info)
 
-
-
-    #display
+    # Display
     display = Display()
-    window.addToVlayout(display)
-    display.setPlaceholderText('Digite Algo')
+    window.addWidgetToVLayout(display)
 
+    # Grid
+    buttonsGrid = ButtonsGrid(display, info, window)
+    window.vLayout.addLayout(buttonsGrid)
 
-    #Executa tudo
+    # Executa tudo
     window.adjustFixedSize()
     window.show()
     app.exec()
-    
